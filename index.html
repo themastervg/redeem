@@ -63,12 +63,29 @@
 <div id="toast" class="toast">Copied!</div>
 
 <div id="liveSection" class="live-box">
-    <h3>🔴 Live Now</h3>
-    <iframe 
-        id="liveFrame"
-        src=""
-        allowfullscreen>
-    </iframe>
+
+    <h3 id="liveTitle">🔴 Stream</h3>
+    <div class="live-controls">
+        <button onclick="toggleChat()" id="chatToggle">Chat: ON</button>
+    </div>
+
+    <div class="live-container">
+
+        <div class="video-wrapper">
+            <iframe 
+                src="https://www.youtube.com/embed/live_stream?channel=UC3HIZWxbnOnP9Pe2TKMRc_A"
+                allowfullscreen>
+            </iframe>
+        </div>
+
+        <div class="chat-box" id="chatBox">
+            <iframe 
+                src="https://www.youtube.com/live_chat?v=LIVE_STREAM&embed_domain=redeem.vgstools.xyz">
+            </iframe>
+        </div>
+
+    </div>
+
 </div>
 
 <footer>
@@ -175,6 +192,31 @@ async function checkLive() {
 }
 
 checkLive();
+
+function toggleChat() {
+    const chat = document.getElementById("chatBox");
+    const btn = document.getElementById("chatToggle");
+
+    if (chat.style.display === "none") {
+        chat.style.display = "block";
+        btn.innerText = "Chat: ON";
+        localStorage.setItem("chatEnabled", "true");
+    } else {
+        chat.style.display = "none";
+        btn.innerText = "Chat: OFF";
+        localStorage.setItem("chatEnabled", "false");
+    }
+}
+
+window.addEventListener("load", () => {
+    const saved = localStorage.getItem("chatEnabled");
+
+    if (saved === "false") {
+        document.getElementById("chatBox").style.display = "none";
+        document.getElementById("chatToggle").innerText = "Chat: OFF";
+    }
+});
+
 </script>
 
 </body>
