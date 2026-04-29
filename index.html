@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Mr VG Games - Redeem Codes</title>
+<meta name="description" content="Latest redeem codes for NTE and Where Winds Meet by Mr VG Games">
+<link rel="stylesheet" href="style.css">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+</head>
+
+<body>
+
+<header>
+<a href="index.html" class="logo-link">
+
+<svg class="logo-svg" viewBox="0 0 300 60" xmlns="http://www.w3.org/2000/svg">
+    <text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle">
+        MR VG GAMES
+    </text>
+</svg>
+
+</a>
+    <p>Redeem Codes</p>
+
+
+<div class="socials">
+
+    <a href="https://www.youtube.com/@mrvggames" target="_blank" class="yt">
+        <svg viewBox="0 0 24 24"><path d="M23 7s-.2-1.7-.8-2.5c-.8-1-1.6-1-2-1.1C17.5 3 12 3 12 3s-5.5 0-8.2.4c-.4.1-1.2.1-2 1.1C1.2 5.3 1 7 1 7S1 9 1 11v2c0 2 0 4 0 4s.2 1.7.8 2.5c.8 1 1.9 1 2.4 1.1C6.5 21 12 21 12 21s5.5 0 8.2-.4c.4-.1 1.2-.1 2-1.1.6-.8.8-2.5.8-2.5s0-2 0-4v-2c0-2 0-4 0-4zM10 15V9l5 3-5 3z"/></svg>
+        <span id="subCount">Loading...</span>
+    </a>
+
+    <a href="https://facebook.com/themrvggames" target="_blank" class="fb">
+    <svg viewBox="0 0 24 24">
+        <path d="M22 12a10 10 0 10-11.5 9.9v-7h-3v-3h3v-2.3c0-3 1.8-4.7 4.5-4.7 1.3 0 2.6.2 2.6.2v3h-1.5c-1.5 0-2 .9-2 1.8V12h3.5l-.6 3h-2.9v7A10 10 0 0022 12z"/>
+    </svg>
+    Follow
+</a>
+
+</div>
+
+</header>
+
+<div class="controls">
+    <input type="text" id="search" placeholder="Search codes with games names...">
+
+
+<div>
+    <button class="filter active" onclick="setFilter('all')">All</button>
+    <button class="filter" onclick="setFilter('NTE')">NTE</button>
+    <button class="filter" onclick="setFilter('Where Winds Meet')">WWM</button>
+</div>
+
+
+</div>
+
+<div id="codes"></div>
+
+<div id="toast" class="toast">Copied!</div>
+
+<div id="liveSection" class="live-box">
+    <h3>🔴 Live Now</h3>
+    <iframe 
+        id="liveFrame"
+        src=""
+        allowfullscreen>
+    </iframe>
+</div>
+
+<footer>
+    <p>© 2026 Mr VG Games</p>
+    <a href="privacy.html">Privacy</a>
+    <a href="terms.html">Terms</a>
+    <a href="disclaimer.html">Disclaimer</a>
+</footer>
+
+<script>
+const data = [
+{game:"Where Winds Meet", code:"LIANGZHOU0402", rewards:"Echo Jade x50", expiry:"2026-06-30"},
+{game:"Where Winds Meet", code:"MEETINHEXI", rewards:"Echo Jade + Coins", expiry:"2026-06-30"},
+{game:"NTE", code:"NTEHAVEFUN", rewards:"Items", expiry:"2026-05-06"},
+{game:"NTE", code:"NTE0429", rewards:"Annulith x100", expiry:"2026-05-13"},
+{game:"NTE", code:"NTENANALLYGO", rewards:"Annulith x100", expiry:"2026-05-13"},
+{game:"NTE", code:"NTENOWTOENJOY", rewards:"Annulith x100", expiry:"2026-05-13"},
+{game:"NTE", code:"NTEGIFT", rewards:"Annulith x50", expiry:"2026-06-30"}
+];
+
+let currentFilter = "all";
+function render(){
+const list=document.getElementById("codes");
+list.innerHTML="";
+const search=document.getElementById("search").value.toLowerCase();
+const today=new Date();
+
+data.forEach(item=>{
+const matchSearch =
+    item.game.toLowerCase().includes(search) ||
+    item.code.toLowerCase().includes(search) ||
+    item.rewards.toLowerCase().includes(search);
+
+if(currentFilter!=="all" && item.game!==currentFilter) return;
+if(!matchSearch) return;
+
+const expired=new Date(item.expiry)<today;
+
+const div=document.createElement("div");
+div.className="card "+(expired?"expired":"");
+
+div.innerHTML=`
+<div class="card-left">
+<span class="code">${item.code}</span>
+<span>${item.rewards}</span>
+<span class="expiry">Expires: ${item.expiry}</span>
+</div>
+<button class="copy-btn" onclick="copyCode('${item.code}')">Copy</button>
+`;
+
+list.appendChild(div);
+});
+}
+
+function copyCode(code) {
+    navigator.clipboard.writeText(code);
+    const toast = document.getElementById("toast");
+    toast.style.display = "block";
+
+    setTimeout(() => {
+        toast.style.display = "none";
+    }, 1500);
+}
+
+function setFilter(game) {
+    currentFilter = game;
+
+    document.querySelectorAll(".filter").forEach(btn => btn.classList.remove("active"));
+    event.target.classList.add("active");
+
+    render();
+}
+
+document.getElementById("search").addEventListener("input", render);
+render();
+
+async function loadSubs() {
+    try {
+        const res = await fetch("https://mixerno.space/api/youtube-channel-counter/user/UC3HIZWxbnOnP9Pe2TKMRc_A");
+        const data = await res.json();
+        const subs = data?.counts?.[0]?.count;
+
+        document.getElementById("subCount").innerText =
+            subs ? subs.toLocaleString() + " subs" : "N/A";
+
+    } catch (e) {
+        document.getElementById("subCount").innerText = "N/A";
+    }
+}
+
+loadSubs();
+
+async function checkLive() {
+    try {
+        const res = await fetch("https://mixerno.space/api/youtube-channel-counter/user/UC3HIZWxbnOnP9Pe2TKMRc_A");
+        const data = await res.json();
+
+        document.getElementById("liveFrame").src =
+            "https://www.youtube.com/embed/live_stream?channel=UC3HIZWxbnOnP9Pe2TKMRc_A";
+
+    } catch {
+        document.getElementById("liveSection").style.display = "none";
+    }
+}
+
+checkLive();
+</script>
+
+</body>
+</html>

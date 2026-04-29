@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://redeem.vgstools.xyz/sitemap.xml
