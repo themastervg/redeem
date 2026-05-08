@@ -59,11 +59,12 @@ function renderFilters() {
 }
 
 function formatDate(dateString) {
-  if (!dateString) {
+  const dateStr = dateString ? String(dateString).trim() : '';
+  if (!dateStr || dateStr.toLowerCase() === 'unknown') {
     return 'Unknown Expiry';
   }
   
-  const date = new Date(dateString);
+  const date = new Date(dateStr);
   
   if (isNaN(date.getTime())) {
     return 'Unknown Expiry';
@@ -85,12 +86,9 @@ function renderGames(games) {
     section.className = 'game-section';
 
     const cards = game.codes.map(code => {
-      let expired = false;
-      const hasExpiry = code.expiry && !isNaN(new Date(code.expiry).getTime());
-      
-      if (hasExpiry) {
-        expired = new Date(code.expiry) < new Date();
-      }
+      const dateStr = code.expiry ? String(code.expiry).trim() : '';
+      const isUnknown = !dateStr || dateStr.toLowerCase() === 'unknown' || isNaN(new Date(dateStr).getTime());
+      const expired = isUnknown ? false : new Date(dateStr) < new Date();
 
       return `
       <div class="card">
@@ -217,11 +215,12 @@ function updateStats(games) {
   games.forEach(game => {
     totalCodes += game.codes.length;
     game.codes.forEach(code => {
-      const hasExpiry = code.expiry && !isNaN(new Date(code.expiry).getTime());
+      const dateStr = code.expiry ? String(code.expiry).trim() : '';
+      const isUnknown = !dateStr || dateStr.toLowerCase() === 'unknown' || isNaN(new Date(dateStr).getTime());
       
-      if (!hasExpiry) {
+      if (isUnknown) {
         activeCodes++;
-      } else if (new Date(code.expiry) > new Date()) {
+      } else if (new Date(dateStr) > new Date()) {
         activeCodes++;
       } else {
         expiredCodes++;
