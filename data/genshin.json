@@ -1,0 +1,14 @@
+{
+  "name": "Genshin Impact",
+  "banner": "assets/images/genshin.webp",
+  "description": "Primogem redeem rewards and event bonuses.",
+  "codes": [
+    {
+      "title": "Primogem Reward",
+      "code": "GENSHIN2026",
+      "reward": "Primogems x60",
+      "region": "Global",
+      "expiry": "2026-08-18T23:59:00"
+    }
+  ]
+}

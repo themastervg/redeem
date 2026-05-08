@@ -1,0 +1,21 @@
+{
+  "name": "NTE",
+  "banner": "assets/images/nte.png",
+  "description": "Latest NTE redeem rewards and active bonus items.",
+  "codes": [
+    {
+      "title": "Launch Reward",
+      "code": "NTE0429",
+      "reward": "Annulith x100",
+      "region": "Global",
+      "expiry": "2026-12-31T23:59:00"
+    },
+    {
+      "title": "Welcome Pack",
+      "code": "NTEGIFT",
+      "reward": "Gold + XP",
+      "region": "Global",
+      "expiry": "2026-11-01T23:59:00"
+    }
+  ]
+}

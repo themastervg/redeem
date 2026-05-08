@@ -1,0 +1,13 @@
+{
+  "games": [
+    {
+      "file": "nte.json"
+    },
+    {
+      "file": "wwm.json"
+    },
+    {
+      "file": "genshin.json"
+    }
+  ]
+}
