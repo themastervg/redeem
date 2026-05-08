@@ -4,11 +4,28 @@
   "description": "Primogem redeem rewards and event bonuses.",
   "codes": [
     {
+      "title": "New Mora Bundle",
+      "code": "FEOMBCVX6UO7",
+      "reward": "x10,000 Mora, x10 Adventurer's Experience, x5 Fine Enhancement Ore, x5 Jueyun Chili Chicken, x5 Stir-Fried Fish Noodles",
+      "region": "Global"
+    },
+    {
       "title": "Primogem Reward",
-      "code": "GENSHIN2026",
-      "reward": "Primogems x60",
-      "region": "Global",
-      "expiry": "2026-08-18T23:59:00"
+      "code": "A0NBWRZZI3XJ",
+      "reward": "x20 Primogems, x160 Geode of Replication",
+      "region": "Global"
+    },
+    {
+      "title": "Adventure Bonus",
+      "code": "PSCA8NL4ZSPD",
+      "reward": "x60 Primogems and x5 Adventurer's Experience",
+      "region": "Global"
+    },
+    {
+      "title": "Official Gift Code",
+      "code": "GENSHINGIFT",
+      "reward": "x50 Primogems and x3 Hero's Wit",
+      "region": "Global"
     }
   ]
 }

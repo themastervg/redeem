@@ -6,16 +6,56 @@
     {
       "title": "Launch Reward",
       "code": "NTE0429",
-      "reward": "Annulith x100",
+      "reward": "Annulith x100, Elite Hunter Guide x2, Chaotic Dye x2, Beetle Coin x12000",
       "region": "Global",
-      "expiry": "2026-12-31T23:59:00"
+      "expiry": "2026-05-13T21:29:00"
     },
     {
-      "title": "Welcome Pack",
-      "code": "NTEGIFT",
-      "reward": "Gold + XP",
+      "title": "Nanally Go Reward",
+      "code": "NTENANALLYGO",
+      "reward": "Annulith x100, Senior Hunter Guide x5, Colorless Dye x5, Beetle Coin x6000",
       "region": "Global",
-      "expiry": "2026-11-01T23:59:00"
+      "expiry": "2026-05-13T21:29:00"
+    },
+    {
+      "title": "Enjoy Reward",
+      "code": "NTENOWTOENJOY",
+      "reward": "Annulith x100, Rising Hunter Guide x5, Light Dye x5, Beetle Coin x4000",
+      "region": "Global",
+      "expiry": "2026-05-13T21:29:00"
+    },
+    {
+      "title": "Gift Pack",
+      "code": "NTEGIFT",
+      "reward": "Annulith x50, Rising Hunter Guide x5, Light Dye x5",
+      "region": "Global",
+      "expiry": "2026-05-13T21:29:00"
+    },
+    {
+      "title": "Fun Pack",
+      "code": "NTEHAVEFUN",
+      "reward": "Elite Hunter Guide x3, Light Dye x3, Manhole Thug x3",
+      "region": "Global",
+      "expiry": "2026-05-06T21:29:00"
+    },
+    {
+      "title": "Special Bonus",
+      "code": "504980102FKGOVNS",
+      "reward": "Annulith x30, Beetle Coin x20000",
+      "region": "Global",
+      "expiry": "2026-05-13T21:29:00"
+    },
+    {
+      "title": "VTuber Reward",
+      "code": "NTEvtuber200",
+      "reward": "Beetle Coin x10000, Fons x10000",
+      "region": "Global"
+    },
+    {
+      "title": "Free Reward",
+      "code": "NTEFREE",
+      "reward": "Fons x30000",
+      "region": "Global"
     }
   ]
 }

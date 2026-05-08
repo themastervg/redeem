@@ -59,10 +59,20 @@ function renderFilters() {
 }
 
 function formatDate(dateString) {
+  if (!dateString) {
+    return 'Unknown Expiry';
+  }
+  
   const date = new Date(dateString);
+  
+  if (isNaN(date.getTime())) {
+    return 'Unknown Expiry';
+  }
+
   const day = String(date.getDate()).padStart(2, '0');
   const month = String(date.getMonth() + 1).padStart(2, '0');
   const year = date.getFullYear();
+  
   return `${day}-${month}-${year}`;
 }
 
@@ -75,7 +85,13 @@ function renderGames(games) {
     section.className = 'game-section';
 
     const cards = game.codes.map(code => {
-      const expired = new Date(code.expiry) < new Date();
+      let expired = false;
+      const hasExpiry = code.expiry && !isNaN(new Date(code.expiry).getTime());
+      
+      if (hasExpiry) {
+        expired = new Date(code.expiry) < new Date();
+      }
+
       return `
       <div class="card">
         <div class="badge ${expired ? 'expired-badge' : 'active-badge'}">
@@ -201,7 +217,11 @@ function updateStats(games) {
   games.forEach(game => {
     totalCodes += game.codes.length;
     game.codes.forEach(code => {
-      if (new Date(code.expiry) > new Date()) {
+      const hasExpiry = code.expiry && !isNaN(new Date(code.expiry).getTime());
+      
+      if (!hasExpiry) {
+        activeCodes++;
+      } else if (new Date(code.expiry) > new Date()) {
         activeCodes++;
       } else {
         expiredCodes++;
