@@ -85,26 +85,58 @@ function renderGames(games) {
     const section = document.createElement('section');
     section.className = 'game-section';
 
-    const cards = game.codes.map(code => {
+    const activeList = [];
+    const expiredList = [];
+
+    game.codes.forEach(code => {
       const dateStr = code.expiry ? String(code.expiry).trim() : '';
       const isUnknown = !dateStr || dateStr.toLowerCase() === 'unknown' || isNaN(new Date(dateStr).getTime());
-      const expired = isUnknown ? false : new Date(dateStr) < new Date();
+      const isExpired = !isUnknown && new Date(dateStr) < new Date();
+      
+      if (isExpired) {
+        expiredList.push(code);
+      } else {
+        activeList.push(code);
+      }
+    });
+
+    const newestCodes = activeList.slice(-3).map(c => c.code);
+
+    activeList.reverse();
+    expiredList.reverse();
+
+    const sortedCodes = [...activeList, ...expiredList];
+
+    const cards = sortedCodes.map(code => {
+      const dateStr = code.expiry ? String(code.expiry).trim() : '';
+      const isUnknown = !dateStr || dateStr.toLowerCase() === 'unknown' || isNaN(new Date(dateStr).getTime());
+      const expired = !isUnknown && new Date(dateStr) < new Date();
+      
+      const isNew = newestCodes.includes(code.code);
 
       return `
-      <div class="card">
-        <div class="badge ${expired ? 'expired-badge' : 'active-badge'}">
-          ${expired ? 'Expired' : 'Active'}
+      <div class="card ${isNew ? 'new-card-glow' : ''}">
+        
+        <div class="card-badges">
+          ${isNew ? '<span class="new-badge">🔥 NEW</span>' : ''}
+          <span class="badge ${expired ? 'expired-badge' : 'active-badge'}">
+            ${expired ? 'Expired' : 'Active'}
+          </span>
         </div>
+        
         <h3>${code.title}</h3>
         <p class="reward">${code.reward}</p>
+        
         <div class="code-box">
           <span class="code">${code.code}</span>
           <button class="copy-btn" data-code="${code.code}">Copy</button>
         </div>
+        
         <div class="meta">
           <span>${code.region}</span>
           <span>${formatDate(code.expiry)}</span>
         </div>
+        
       </div>
       `;
     }).join('');
