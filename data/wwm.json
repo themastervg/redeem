@@ -227,6 +227,13 @@
     "reward": "Special Rewards",
     "region": "Global",
     "expiry": "2026-05-31T21:29:00"
+  },
+  {
+    "title": "Half-Anniversary Special Reward",
+    "code": "HAPPY515",
+    "reward": "Special Rewards",
+    "region": "Global",
+    "expiry": "2026-05-31T21:29:00"
   }
 ]
 }

@@ -74,6 +74,13 @@
       "code": "NTENENE",
       "reward": "Fons x10000, Clicky Fries x10, DynamiK x10",
       "region": "Global"
+    },
+    {
+      "title": "Free Reward",
+      "code": "NTE429vtuber",
+      "reward": "Fons x30000, Beetle Coin x30000",
+      "region": "Global",
+      "expiry": "2026-05-13T21:29:00"
     }
   ]
 }
